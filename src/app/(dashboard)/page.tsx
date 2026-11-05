@@ -4,6 +4,7 @@ import { listDocumentsFor } from "@/lib/documents";
 import { AppHeader } from "@/components/AppHeader";
 import { DocList } from "@/components/DocList";
 import { NewDocButton } from "@/components/NewDocButton";
+import { ImportButton } from "@/components/ImportButton";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,7 @@ export default async function DashboardPage() {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <h1 className="text-xl font-semibold text-slate-900">Documents</h1>
           <div className="flex flex-wrap items-center gap-3">
+            <ImportButton />
             <NewDocButton />
           </div>
         </div>

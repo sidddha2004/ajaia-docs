@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { EditorContent, useEditor, type JSONContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { baseExtensions } from "@/lib/editorSchema";
 import { Placeholder } from "@tiptap/extensions";
 import type { Role } from "@/lib/access";
 import { useAutosave, type SaveStatus } from "@/hooks/useAutosave";
@@ -50,9 +50,7 @@ export function Editor({ docId, initialTitle, initialContent, role, ownerName, a
     immediatelyRender: false, // avoid SSR hydration mismatch
     editable: canEdit,
     extensions: [
-      // Links and code blocks are out of scope; turning links off also avoids
-      // having to vet user-supplied hrefs.
-      StarterKit.configure({ link: false, codeBlock: false, heading: { levels: [1, 2, 3] } }),
+      ...baseExtensions,
       Placeholder.configure({ placeholder: canEdit ? "Start writing…" : "This document is empty." }),
     ],
     content: initialContent,
