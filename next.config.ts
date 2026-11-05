@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  // DOM implementations used for import parsing/sanitising: load them from
-  // node_modules at runtime instead of bundling them.
-  serverExternalPackages: ["isomorphic-dompurify", "jsdom", "happy-dom", "mammoth"],
-};
+// No serverExternalPackages on purpose: happy-dom (used by @tiptap/html/server)
+// and marked are ESM-only, and Vercel's function loader can't require() ESM
+// from node_modules. Letting Next bundle them avoids that entirely.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

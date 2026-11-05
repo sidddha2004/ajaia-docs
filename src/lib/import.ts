@@ -1,4 +1,4 @@
-import DOMPurify from "isomorphic-dompurify";
+import sanitizeHtml from "sanitize-html";
 import mammoth from "mammoth";
 import { marked } from "marked";
 import { generateJSON } from "@tiptap/html/server";
@@ -74,9 +74,27 @@ async function toHtml(kind: Kind, buf: Buffer): Promise<string> {
   }
 }
 
-/** HTML → sanitised → TipTap JSON restricted to the editor's schema. */
+// Allowlist sanitiser (no DOM needed). Tags outside the list are unwrapped to
+// their text; script/style/iframe contents are dropped entirely; no attributes
+// survive except an ordered list's start number.
+const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "p", "br", "h1", "h2", "h3", "h4", "h5", "h6",
+    "strong", "b", "em", "i", "u", "s", "del", "strike",
+    "ul", "ol", "li", "blockquote", "code", "hr",
+  ],
+  allowedAttributes: { ol: ["start"] },
+  allowedSchemes: [],
+  nonTextTags: ["script", "style", "textarea", "option", "noscript", "iframe", "object", "template"],
+};
+
+/**
+ * HTML → allowlist-sanitised → TipTap JSON restricted to the editor's schema.
+ * Two layers: sanitize-html strips anything dangerous, then generateJSON only
+ * keeps nodes and marks the editor defines.
+ */
 export function htmlToDoc(html: string): Record<string, unknown> {
-  const clean = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+  const clean = sanitizeHtml(html, SANITIZE_OPTIONS);
   const doc = generateJSON(clean, baseExtensions) as { type: string; content?: unknown[] };
   return doc.content && doc.content.length > 0 ? doc : EMPTY_DOC;
 }
