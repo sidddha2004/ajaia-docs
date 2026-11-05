@@ -34,7 +34,6 @@
 | Screenshots (8) | [`docs/screenshots/`](docs/screenshots/) |
 | Sample files for import (`.docx`, `.md`, `.txt`, and a `.pdf` to show rejection) | [`samples/`](samples/) |
 | Automated tests (4 suites, 44 tests) | [`tests/`](tests/) |
-| Original build plan | [`PLAN.md`](PLAN.md) |
 
 ## Requirement checklist
 

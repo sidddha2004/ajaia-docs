@@ -12,7 +12,7 @@
 
 ## How I worked with it
 
-1. **Plan first.** Before any code, I wrote [`PLAN.md`](PLAN.md) with the AI: stack, data model, access rules, a **timeboxed build order** (9 steps), deliberate cuts, and a verification checklist. I made the key calls myself: Vercel + Neon, mocked auth, and what to cut.
+1. **Plan first.** Before any code, I wrote a build plan with the AI: stack, data model, access rules, a **timeboxed build order** (9 steps), deliberate cuts, and a verification checklist. I made the key calls myself: Vercel + Neon, mocked auth, and what to cut.
 2. **One step at a time, verified before moving on.** Each step ended with typecheck + lint + production build, a check through the API and the browser, and a commit. I reviewed each step's summary and said "commit and continue". There was no long autonomous run.
 3. **Humans own the outward-facing actions.** I created the GitHub repo, approved the Vercel and Neon setup, and confirmed destructive actions such as cleaning production data.
 
