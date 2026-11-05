@@ -8,7 +8,7 @@
 |---|---|
 | **Live product** | https://ajaia-docs-five-phi.vercel.app |
 | **Source code** | https://github.com/sidddha2004/ajaia-docs (also in this Drive folder) |
-| **Walkthrough video** | See [`VIDEO_URL.txt`](VIDEO_URL.txt) |
+| **Walkthrough video** | https://drive.google.com/file/d/18iTt1gzEWCLGWSq6KE3XL9HEoyQnSvwX/view?usp=sharing (also in [`VIDEO_URL.txt`](VIDEO_URL.txt)) |
 | **Google Drive folder** | _link provided with the submission_ |
 
 ## Test accounts (mocked auth: just click a user, no password)

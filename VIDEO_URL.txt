@@ -1,4 +1,4 @@
-Walkthrough video (3-5 min): PASTE_YOUR_LOOM_OR_UNLISTED_YOUTUBE_LINK_HERE
+Walkthrough video (3-5 min): https://drive.google.com/file/d/18iTt1gzEWCLGWSq6KE3XL9HEoyQnSvwX/view?usp=sharing
 
 Live product: https://ajaia-docs-five-phi.vercel.app
 Source code:  https://github.com/sidddha2004/ajaia-docs
