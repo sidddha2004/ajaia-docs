@@ -6,7 +6,7 @@
 
 | Tool | Used for |
 |---|---|
-| **Claude Code** (Claude Opus, in the Claude desktop app) | Planning, implementation, writing tests, debugging, driving the browser for UI checks, deployment commands, docs |
+| **Claude Code** | Planning, implementation, writing tests, debugging, driving the browser for UI checks, deployment commands, docs |
 | **Claude's in-app browser + headless Edge (Playwright)** | Clicking through real UI flows and capturing the README screenshots |
 | **Vercel CLI / Neon (via Vercel Marketplace)** | Provisioning and deploying, run by the agent with my approval at each outward-facing step |
 

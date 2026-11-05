@@ -315,11 +315,3 @@ docs/screenshots/           # README images
 | [VIDEO_URL.txt](VIDEO_URL.txt) | Walkthrough video link |
 
 Everything runs on free tiers (Vercel Hobby, Neon Free), so reviewers don't pay for anything.
-
----
-
-<div align="center">
-
-Built by **Siddharth** with Claude Code as a pair programmer. See [AI_WORKFLOW.md](AI_WORKFLOW.md) for how.
-
-</div>
