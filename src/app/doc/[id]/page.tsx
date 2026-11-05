@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { JSONContent } from "@tiptap/react";
-import { eq } from "drizzle-orm";
+import { asc, eq, ne } from "drizzle-orm";
+import { listShares } from "@/lib/shares";
+import { ShareButton } from "@/components/ShareDialog";
 import { notFound, redirect } from "next/navigation";
 import { db } from "@/db";
 import { users } from "@/db/schema";
@@ -29,7 +31,26 @@ export default async function DocPage({ params }: Props) {
   if (!access.ok) notFound();
   const { doc, role } = access;
 
-  const [owner] = await db.select({ name: users.name }).from(users).where(eq(users.id, doc.ownerId));
+  const [owner] = await db
+    .select({ name: users.name, email: users.email, avatarColor: users.avatarColor })
+    .from(users)
+    .where(eq(users.id, doc.ownerId));
+
+  let shareButton: React.ReactNode = null;
+  if (role === "owner") {
+    const [shares, others] = await Promise.all([
+      listShares(doc.id),
+      db.select({ email: users.email }).from(users).where(ne(users.id, user.id)).orderBy(asc(users.id)),
+    ]);
+    shareButton = (
+      <ShareButton
+        docId={doc.id}
+        owner={owner}
+        initialShares={shares}
+        suggestions={others.map((o) => o.email)}
+      />
+    );
+  }
 
   return (
     <>
@@ -42,6 +63,7 @@ export default async function DocPage({ params }: Props) {
         initialContent={doc.content as JSONContent}
         role={role}
         ownerName={owner?.name ?? "the owner"}
+        actions={shareButton}
       />
     </>
   );

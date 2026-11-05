@@ -36,6 +36,13 @@ export const patchDocumentSchema = z
 
 export const uuidSchema = z.string().uuid();
 
+export const shareSchema = z
+  .object({
+    email: z.string().trim().toLowerCase().email("Enter a valid email address"),
+    role: z.enum(["editor", "viewer"], { message: "Role must be editor or viewer" }),
+  })
+  .strict();
+
 export const EMPTY_DOC = { type: "doc", content: [{ type: "paragraph" }] };
 
 export function firstIssue(err: z.ZodError): string {
